@@ -1,0 +1,15 @@
+introduction to run website
+re-config
+	create schema 'multiple-choice-test' (using phpadmin,...)
+	change database admin/password in app/config/database.php at 'mysql-hoang-anh'
+
+open command in project's directory, run:
+	composer install --no-dev //visit https://getcomposer.org/doc/00-intro.md#installation-windows to install composer
+	php artisan migrate //auto create table in schema
+	php artisan db:seed //auto seed dummy-data
+	php artisan serve //run website at default localhost:800
+
+visit website at localhost:8000
+sign-in info:
+normal-user: id/keystone -> 2/OFwQq7ob
+admin-user: id/keystone -> 1/OF1sc1gV
