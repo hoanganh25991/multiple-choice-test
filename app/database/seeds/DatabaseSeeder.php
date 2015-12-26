@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ChaptersSeederAddColumnRate');
         $this->call('TestOptionsSeeder');
         $this->call('ContestantsSeeder');
-        $this->call('ContestantsPasswordSeeder');
+        //$this->call('ContestantsPasswordSeeder');
     }
 
 }
