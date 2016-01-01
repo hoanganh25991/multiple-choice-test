@@ -11,13 +11,13 @@ class DatabaseSeeder extends Seeder {
 	{
 		Eloquent::unguard();
 
-//        $this->call('UserTableSeeder');
-//        $this->call('QuestionsSeeder');
-//        $this->call('OptionsSeeder');
-//        $this->call('ChaptersSeeder');
-//        $this->call('ChaptersSeederAddColumnRate');
-//        $this->call('TestOptionsSeeder');
-//        $this->call('ContestantsSeeder');
+        $this->call('UserTableSeeder');
+        $this->call('QuestionsSeeder');
+        $this->call('OptionsSeeder');
+        $this->call('ChaptersSeeder');
+        $this->call('ChaptersSeederAddColumnRate');
+        $this->call('TestOptionsSeeder');
+        $this->call('ContestantsSeeder');
         $this->call('ContestantsPasswordSeeder');
     }
 
