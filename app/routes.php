@@ -10,6 +10,34 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+//Route::post('admin', function(){
+//    echo "hoanganh";
+//});
+Route::post('admin-ajax', function(){
+    //chapter clicked
+    if(Input::has('load_chapter')){
+        $chapter_number = Input::get('load_chapter');
+        $chapter = Chapter::find($chapter_number);
+        $questions = $chapter->getQuestions;
+        echo $questions->toJson();
+//        echo $questions->toJson();
+    }else{
+//        echo "khong vao if"; ,..
+    }
+    if(Input::has('question_id')){
+//        $question_id = Input::get('question_id');
+//        $question = Question::get($question_id);
+//        $options = $question->getOptions;
+//        echo $options->toJson();
+        echo "sao ko co ajax";
+    }
+    if(Input::has('test_ajax')){
+        echo "test success";
+    }
+    if(Input::has('test_ajax_response_form')){
+        echo "test response form success";
+    }
+});
 
 Route::get('login', function(){
 //    $hashed = Hash::make("OF1sc1gV");
@@ -86,50 +114,48 @@ Route::group(array('before'=>'auth'), function(){
         if(Auth::user()->id == "1"){
             $chapters = Chapter::all();
             $test_options = TestOption::all();
-            return View::make('admin02')->with('chapters', $chapters)->with('test_options', $test_options);
+//            return View::make('admin02')->with('chapters', $chapters)->with('test_options', $test_options);
+            return View::make('admin-03');
         }else{
             return Redirect::to('test');
         }
 
     });
-
-    Route::post('admin', function(){
-        $chapters = Chapter::all();
-        foreach($chapters as $chapter){
-            $chapter->rate = Input::get('chapter_0'.$chapter->id.'_rate');
-//        $chapter->rate = 10;
-            $chapter->save();
-        }
-//    $chapters = Chapter::all();//do we need to reload $chapters, after each $chapter updated?
-        $test_options = TestOption::all();
-        foreach($test_options as $test_option){
-            $test_option->value = Input::get($test_option->key);
-            $test_option->save();
-        }
-//    return View::make('admin02')->with('chapters', $chapters)->with('test_options', $test_options);
-        return Redirect::to('admin');
-    });
-
     Route::get('test', function(){
         $result = Auth::user()->result;
-        if($result != ""){//contestant had test
+        $id = Auth::user()->id;
+//        echo $id;
+        if($result != "" && $id != "1"){//contestant had test
             return Redirect::to('result');
-        }else{
-            $chapters = Chapter::all();
-            //create random questions
-            $random_questions = array();
-            foreach($chapters as $chapter){
-                $random_questions_chapter_x = 'random_questions_chapter_0'.$chapter->id;//just create a name programmatic
-                $$random_questions_chapter_x = $chapter->getQuestions->random($chapter->rate);
-                $random_questions[] = $$random_questions_chapter_x;
-            }
-            //get timer from test option
-            $test_options = TestOption::all();
-            $timer = $test_options[0];
-            return View::make('test')->with('random_questions', $random_questions)->with('timer', $timer);
         }
+        $chapters = Chapter::all();
+        //create random questions
+        $random_questions = array();
+        foreach($chapters as $chapter){
+            $random_questions_chapter_x = 'random_questions_chapter_0'.$chapter->id;//just create a name programmatic
+            $$random_questions_chapter_x = $chapter->getQuestions->random($chapter->rate);
+            $random_questions[] = $$random_questions_chapter_x;
+        }
+        //get timer from test option
+        $test_options = TestOption::all();
+        $timer = $test_options[0];
+        return View::make('test')->with('random_questions', $random_questions)->with('timer', $timer);
     });
+    Route::get('admin/test-options', 'TestOptionsController@view');
+    Route::get('admin/chapter-rate', 'ChapterRateController@view');
+    Route::model('chapter', 'Chapter');//bind model for chapters
+    Route::get('admin/chapters', 'ChaptersController@view');
+    Route::get('admin/chapters/{chapter}', array(
+        'uses' => 'ChaptersController@getChapter'
+    ));
 
+    Route::post('admin', 'AdminController@handlePost');
+    Route::post('admin/test-options', 'TestOptionsController@handlePost');
+    Route::post('admin/chapter-rate', 'ChapterRateController@handlePost');
+    Route::post('admin/chapters', 'ChaptersController@handlePost');
+    Route::post('admin/chapters/{chapter}', array(
+        'uses' => 'ChapterQuestionsController@handleQuestionPost'
+    ));
     Route::post('test', function(){
         // calculate result
 //    echo Session::get('contestant_id');
@@ -153,6 +179,8 @@ Route::group(array('before'=>'auth'), function(){
 //    Session::put('result', $result);//because we have saved to database, read result from that, don't have to push more
         return Redirect::to('result');
     });
+
+
 });
 
 Route::get('log-out', function(){
@@ -163,3 +191,23 @@ Route::get('log-out', function(){
        echo '<h1>you-havent-log-in</h1>';
    }
 });
+
+Route::get('request-uri/abc', function(){
+    $uri = Request::path();
+    $return = '<form method="get"><input type="text" name="submit" value="123"><button>set</button></form>';
+    $request_method = "khong co \$request_method";
+    if(Request::isMethod('get')){
+        $request_method = Request::method();
+    }
+    $url = Request::url();
+    $segment = Request::segment(2);
+    $value = Request::server('PATH_INFO');
+    echo $return;
+    var_dump($uri);
+    var_dump($request_method);
+    var_dump($url);
+    var_dump($segment);
+    var_dump($value);
+});
+
+

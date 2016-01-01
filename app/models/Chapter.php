@@ -7,6 +7,7 @@
  */
 class Chapter extends Eloquent{
     public $timestamps = false;
+    public $fillable = array('text', 'rate');
     public function getQuestions(){
         return $this->hasMany('Question');
     }

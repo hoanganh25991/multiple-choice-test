@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="_token" content="{!! csrf_token() !!}"/>
 <title>Document</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
@@ -17,6 +18,11 @@
     <p>mr.hoang-anh</p>
     <p>mobile: 0903865657</p>
     @yield('my-script')
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+        });
+    </script>
 </body>
 </html>
 
