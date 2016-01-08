@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 {{--laravel prevent csrf by token, jquery-ajax need this token sent to ajax-file.php (place handle ajax-request)--}}
 <meta name="_token" content="{!! csrf_token() !!}"/>
-{{HTML::style('css/style.css')}}
 <title>Document</title>
+{{--bootstrap-css--}}
+<link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
+<link rel="stylesheet" href="{{URL::asset('css/bootstrap-iso.css')}}">
 </head>
 <body>
 	<h1>cau lac bo chung khoan-dai hoc ngoai thuong</h1>
@@ -34,8 +36,10 @@
 		<input type="hidden" name="messages" value="{{$messages}}">
 	@endif
 	</div>
-	{{--load javascript into blade--}}
+	{{--jQuery--}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	{{--bootstrap-js--}}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$.ajaxSetup({
 			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }

@@ -23,14 +23,17 @@ class TestController extends ProjectController{
         foreach($chapters as $chapter) {
             //each chapter, load random-questions by chapter-rate
             //then store in $random_questions
-            if($chapter->rate != 0){//make sure chapter has question
+//            if($chapter->rate != 0){//make sure chapter has question
+//                $random_questions[] = $chapter->getQuestions->random($chapter->rate);
+//            }
+            if(count($chapter->getQuestions) > $chapter->rate){
                 $random_questions[] = $chapter->getQuestions->random($chapter->rate);
             }
         }
         //get timer from test option
         $test_options = TestOption::all();
         $timer = $test_options[0];
-        return View::make('test', array(
+        return View::make('test-bootstrap', array(
             'random_questions' => $random_questions,
             'timer' => $timer,
             'messages' => $messages

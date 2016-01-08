@@ -85,7 +85,7 @@ require app_path().'/filters.php';
  */
 App::missing(function(){
     return Response::make('
-        <h1>error-page</h1>
+        <h1>missing-page</h1>
         <p>we are sorry, the site, you finding is not exist</p>
     ');
 });

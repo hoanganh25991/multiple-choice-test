@@ -11,7 +11,7 @@ class LoginController extends ProjectController{
     public function get(){
         //push 'messages' to view
         $messages = $this->messageController->getMessages($this::MESSAGE_KEY);
-        return View::make('login',array(
+        return View::make('login-bootstrap',array(
             'messages' => $messages,
         ));
     }

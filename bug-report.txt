@@ -4,7 +4,7 @@
 					$contestant_collection = Contestant::find(Input::get('contestant_id'));
 					Auth::login($candidate);
 
-ProjectController > contract > message_key
+ProjectController > contract > message_key //static-final
 ProjectController->message-notification
 chapter-controller: input value hien thi lai question, neu ko co change, cung dc coi nhu submit -> notify changed
 	>>>can i use javascript to listen to event change
@@ -21,4 +21,14 @@ chapter-controller: input value hien thi lai question, neu ko co change, cung dc
 //new-question >>> strict + 1 by last-one
 
 <back, vi dom con, nen js hien thi lai message @@
+
+analysis
+chapters upload-file ko co sure la chapter do co question hay ko, chapter-rate up tu file co the >>> loi vi chapter do ko co questions, check if(chapter-rate== 0) khi loop random la ko 'sure', phai check count($chapter->getQuestions) thi moi chac dc, count thi ton qua
+if(count($chapter->getQuestions) > $chapter->rate){
+                $random_questions[] = $chapter->getQuestions->random($chapter->rate);
+            }
+what if $chapter->rate does not exist
+test-page, subimt
+check id-keystone, only 1 time used
+
 

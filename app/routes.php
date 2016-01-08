@@ -35,9 +35,17 @@ Route::group(array('before'=>'auth'), function(){
         Route::post('chapters', 'ChaptersController@post');
         Route::post('chapters/{chapter}', 'ChaptersController@postQuestionChange');
 
+        Route::get('csv', 'CsvController@get');
+        Route::post('csv', 'CsvController@post');
         //modify database: delete-all
-        Route::get('delete-all/contestant', function(){Contestant::truncate();});
+//        Route::get('delete-all/contestant', function(){Contestant::truncate();});//below code is more general
+        Route::get('delete-all/{model}', function($model){$model::truncate();});
     });
 });
 Route::get('log-out', 'LogOutController@get');
+//general-route to test bootstrap-theme
+Route::get('/{name}', function($name){
+    return View::make($name);
+});
+
 
