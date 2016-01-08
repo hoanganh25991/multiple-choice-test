@@ -1,0 +1,2 @@
+POST GET BLADE
+for good design, never go form POST > BLADE, then check things inside BLADE

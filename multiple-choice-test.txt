@@ -1,0 +1,10 @@
+#multiple-choice-test
+tao viet web-app 'multiple-choice-test', tao bai trac nghiem tren bo cau hoi, mot cau lac bo nho viet, y tuong ban ticket co in keystone (OF1sc1gV-random string nhu mat khau) de mua bai trac nghiem.
+Vi programming-language khac nhau, nen tao tom tat lai web-app, ai thay cai gi huu dung thi direct-message trao doi them
+_nhap dummy-data bo cau hoi vao mysql
+__dung lorem-ipsum + code-java tao query insert trong text-file de import vao mysql
+_random cau hoi theo ti le moi chuong, ex: (chuong 1, 15 cau), (chuong 2, 20 cau),...
+_set timer bai test, chong hack close-tab khi dang lam bai
+_chi lam bai test 1 lan
+_quan ly dang nhap keystone
+_admin-page de custom test-timer, chapter, questions, options,...
