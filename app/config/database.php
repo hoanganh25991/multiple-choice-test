@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql-hoang-anh',
+	'default' => 'project_mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ return array(
 			'prefix'    => '',
 		),
 
-        'mysql-hoang-anh' => array(
+        'project_mysql' => array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
             'database'  => 'multiple-choice-test',
