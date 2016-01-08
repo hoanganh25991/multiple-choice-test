@@ -6,9 +6,9 @@
  * Time: 10:30 PM
  */
 class ContestantsSeeder extends DatabaseSeeder{
-    public function run(){
-        DB::table('contestants')->insert(
-            array(
+	public function run(){
+		DB::table('contestants')->insert(
+			array(
                 array('id'=>1,'keystone'=>'$2y$10$lpwLtYy4.np6BJj5zc2YK.oTerx5vNCrIe9Dm5CDmBfCYAI2izPvS'),
                 array('id'=>2,'keystone'=>'$2y$10$zSbZ1FQJlVpPNf16ErjOvu.Gqo7qOEwbNvPEs5QglQ7DLeuix61Um'),
                 array('id'=>3,'keystone'=>'$2y$10$OgPeY0mqyvirhWUVYs2VNuitT7pXlt5YwkVOvUuDo/83CHtD/rQD.'),
@@ -408,8 +408,8 @@ class ContestantsSeeder extends DatabaseSeeder{
                 array('id'=>397,'keystone'=>'$2y$10$XyJIXRDnbgENb/nWQnhvkuYleH7WbZQcybt2F6wn63c3qSC8ioq76'),
                 array('id'=>398,'keystone'=>'$2y$10$58VAUI7VTV2cRK4tgyaQGeZbDot601iVmcNDiMA8Thgfmm3x65/NS'),
                 array('id'=>399,'keystone'=>'$2y$10$gdGQTgRp9/ptj4wmeaxhouygnM90GLx.1WJZm3C1bb169Vhl4f.uy'),
-                array('id'=>400,'keystone'=>'$2y$10$X1fehwgPBbH96RY61p7WZezQ0HsEByrYOFN64OPa25JPgyBaIzPPW')
+                array('id'=>400,'keystone'=>'$2y$10$X1fehwgPBbH96RY61p7WZezQ0HsEByrYOFN64OPa25JPgyBaIzPPW'),
             )
         );
-    }
+	}
 }

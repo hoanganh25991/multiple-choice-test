@@ -88,3 +88,14 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+Route::filter('admin', function()
+{
+    //after login, can navigate to 'admin', before that
+    //navigate will redirect to 'login'
+    $contestant = Auth::user();
+    //check if $contestant not 'admin'
+    if($contestant->id != 1){
+        return Redirect::to('login');
+    }
+});

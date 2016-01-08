@@ -2,27 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+{{--laravel prevent csrf by token, jquery-ajax need this token sent to ajax-file.php (place handle ajax-request)--}}
 <meta name="_token" content="{!! csrf_token() !!}"/>
+{{HTML::style('css/style.css')}}
 <title>Document</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-    <h1>cau lac bo chung khoan-dai hoc ngoai thuong</h1>
-    <h2>test page</h2>
-    <hr>
-    <div style="width: 960px; margin: auto">
-        @yield('content')
-    </div>
-    <hr>
-    <p>contact us</p>
-    <p>mr.hoang-anh</p>
-    <p>mobile: 0903865657</p>
-    @yield('my-script')
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
-        });
-    </script>
+	<h1>cau lac bo chung khoan-dai hoc ngoai thuong</h1>
+	@yield('title')
+	<hr>
+	<div class="wrapper">
+		@yield('content')
+	</div>
+	<hr>
+	<p>contact us</p>
+	<p>mr.hoang-anh</p>
+	<p>mobile: 0903865657</p>
+	{{--loop messages from server to DOM, for javascript use--}}
+	<div id="page_messages">
+	@if(is_array($messages))
+		@foreach($messages as $key => $values)
+			@if(is_array($values))
+				@foreach($values as $value)
+					<input type="hidden" name="{{$key}}" value="{{$value}}">
+				@endforeach
+			@else
+				<input type="hidden" name="{{$key}}" value="{{$values}}">
+			@endif
+		@endforeach
+	@else
+		<input type="hidden" name="messages" value="{{$messages}}">
+	@endif
+	</div>
+	{{--load javascript into blade--}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.ajaxSetup({
+			headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+		});
+		$(document).ready(function(){
+		    var message = "";
+		    $('#page_messages').find(':input').each(function(){
+		        message += $(this).val() + "\n";
+		    });console.log(message);
+		    if(message != ""){
+                alert(message);
+		    }
+		});
+	</script>
+	@yield('project_script')
 </body>
 </html>
 

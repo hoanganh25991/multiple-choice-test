@@ -1,2 +1,24 @@
-chapter-rate = 0 >>> error random >>> null
-test page error
+//testcontroller: chapter_rate=0
+//testcontroller accept chapter_rate = 0, chi la ko loop thoi
+//logincontroller: contestant-> find ko thay
+					$contestant_collection = Contestant::find(Input::get('contestant_id'));
+					Auth::login($candidate);
+
+ProjectController > contract > message_key
+ProjectController->message-notification
+chapter-controller: input value hien thi lai question, neu ko co change, cung dc coi nhu submit -> notify changed
+	>>>can i use javascript to listen to event change
+
+//chapter-controller: question, chapter_id > 9 ???
+//delete-question is_right option
+//validate:	1.modify
+			2.new
+//over load when something checked by server
+	>>>i will use js
+//auto increment >>> mat id, chapter total = 10, nhung do delete, chapter-new >>> id = 11/12/13,...
+>>> validate = total chapter >>> wrong
+>>>strict modfify chapter
+//new-question >>> strict + 1 by last-one
+
+<back, vi dom con, nen js hien thi lai message @@
+

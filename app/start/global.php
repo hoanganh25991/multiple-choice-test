@@ -79,3 +79,13 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+ * hanlde 404 error
+ */
+App::missing(function(){
+    return Response::make('
+        <h1>error-page</h1>
+        <p>we are sorry, the site, you finding is not exist</p>
+    ');
+});
