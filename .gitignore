@@ -6,4 +6,4 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-multiple-choice-test-source-code.doc.docx
+multiple-choice-test-source-code.doc.docx .idea
